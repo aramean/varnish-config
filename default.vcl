@@ -15,24 +15,24 @@ backend default {
 }
 
 acl purge {
-  "localhost";
-  "127.0.0.1";
-  "89.189.193.26";
+    "localhost";
+    "127.0.0.1";
+    "89.189.193.26";
 }
 
 # Define the director that determines how to distribute incoming requests.
 sub vcl_init {
-  new bar = directors.fallback();
-  bar.add_backend(default);
+    new bar = directors.fallback();
+    bar.add_backend(default);
 }
 
 sub vcl_recv {
+    call badbots;
+    call blockip;
+    call nocache;
 
-call badbots;
-call blockip;
-call nocache;
+    set req.backend_hint = bar.backend();
 
-set req.backend_hint = bar.backend();
     if (req.method == "PURGE") {
         if (!client.ip ~ purge) {
             return (synth(405, "Not allowed."));
