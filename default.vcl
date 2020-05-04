@@ -6,7 +6,6 @@ import std;
 include "/etc/varnish/conf.d/badbots.vcl";
 include "/etc/varnish/conf.d/blockip.vcl";
 include "/etc/varnish/conf.d/nocache.vcl";
-include "/etc/varnish/conf.d/hashforwarded.vcl";
 
 # Default backend definition. Set this to point to your content server.
 backend default {
