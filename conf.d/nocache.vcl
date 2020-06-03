@@ -1,4 +1,3 @@
-#Wordpress
 sub nocache {
   # Do not cache these paths.
   if (req.url ~ "^/status\.php$" ||
