@@ -13,10 +13,10 @@ backend default {
     .port = "8080";
 }
 
+# Allow purge from localhost
 acl purge {
     "localhost";
     "127.0.0.1";
-    "89.189.193.26";
 }
 
 # Define the director that determines how to distribute incoming requests.
